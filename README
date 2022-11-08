@@ -1,0 +1,8 @@
+This app uses the Pixela API to track your desired activity 
+
+set up a config.py file with the following:
+API_token = "" (API key of your choice when creating your user)
+username = "" (username of your choice when creating your user)
+
+run the first post request to create your new user with the selected API key and username 
+
