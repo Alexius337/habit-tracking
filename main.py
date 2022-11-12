@@ -39,6 +39,8 @@ headers = {
 
 ## Go to URL https://pixe.la/v1/users/{username}/graphs/{graph_id}.html
 
+## POST A NEW PIXEL
+
 pixel_creation_endpoint = f"{pixela_endpoint}/{USERNAME}/graphs/{GRAPHID}"
 
 today = str(datetime.now())
@@ -46,10 +48,29 @@ date = today[0:10].replace("-", "")
 
 pixel_data = {
     "date": date,
-    "quantity": "1"
+    "quantity": input("How many yoga classes did you do today?")
 }
 
-# response = requests.post(url=pixel_creation_endpoint, json=pixel_data, headers=headers)
+response = requests.post(url=pixel_creation_endpoint, json=pixel_data, headers=headers)
+response.raise_for_status
+print(response.text)
+
+## UPDATE A PIXEL
+
+pixel_update_endpoint = f"{pixela_endpoint}/{USERNAME}/graphs/{GRAPHID}/{date}"
+
+new_pixel_data = {
+    "quantity": "3"
+}
+
+# response = requests.put(url=pixel_update_endpoint, json=new_pixel_data, headers=headers)
 # response.raise_for_status
 # print(response.text)
 
+## DELETE PIXEL
+
+delete_endpoint = f"{pixela_endpoint}/{USERNAME}/graphs/{GRAPHID}/{date}"
+
+# response = requests.delete(url=pixel_update_endpoint, headers=headers)
+# response.raise_for_status
+# print(response.text)
